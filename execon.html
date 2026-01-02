@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Multi-Step Fullscreen Pages</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        overflow: hidden;
+    }
+
+    .page {
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page.active {
+        display: flex;
+    }
+
+    h1 {
+        margin-bottom: 15px;
+        font-size: clamp(24px, 5vw, 40px);
+    }
+
+    p {
+        font-size: clamp(16px, 3.5vw, 20px);
+        max-width: 600px;
+    }
+
+    .buttons {
+        margin-top: 30px;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 16px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #007bff;
+        color: white;
+    }
+
+    button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+
+    /* Background colors for visibility */
+    #page1 { background: #e3f2fd; }
+    #page2 { background: #e8f5e9; }
+    #page3 { background: #fff3e0; }
+    #page4 { background: #fce4ec; }
+    #page5 { background: #ede7f6; }
+</style>
+</head>
+
+<body>
+
+<div id="page1" class="page active">
+    <h1>Welcome Page</h1>
+    <p>Welcome to our application. Click Next to continue.</p>
+</div>
+
+<div id="page2" class="page">
+    <h1>Experience Page</h1>
+    <p>Please share or explore your experience.</p>
+</div>
+
+<div id="page3" class="page">
+    <h1>Content Number 1</h1>
+    <p>This is the first main content section.</p>
+</div>
+
+<div id="page4" class="page">
+    <h1>Content Number 2</h1>
+    <p>This is the second main content section.</p>
+</div>
+
+<div id="page5" class="page">
+    <h1>Thank You Page</h1>
+    <p>Thank you for visiting. We appreciate your time!</p>
+</div>
+
+<div class="buttons" style="position: fixed; bottom: 20px; width: 100%; text-align: center;">
+    <button id="backBtn" onclick="changePage(-1)">Back</button>
+    <button id="nextBtn" onclick="changePage(1)">Next</button>
+</div>
+
+<script>
+    let currentPage = 0;
+    const pages = document.querySelectorAll('.page');
+    const backBtn = document.getElementById('backBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function showPage(index) {
+        pages.forEach(page => page.classList.remove('active'));
+        pages[index].classList.add('active');
+
+        backBtn.disabled = index === 0;
+        nextBtn.disabled = index === pages.length - 1;
+    }
+
+    function changePage(direction) {
+        currentPage += direction;
+        showPage(currentPage);
+    }
+
+    showPage(currentPage);
+</script>
+
+</body>
+</html>
