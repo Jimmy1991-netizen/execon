@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Intro Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Animated Gradient Background */
+body {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Gradient Animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Main Container */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Proceed Button Wrapper */
+.button-wrapper {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Proceed Button */
+.proceed-btn {
+    padding: 15px 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    background: #ffffff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.proceed-btn:hover {
+    transform: scale(1.05);
+    background: #f1f1f1;
+}
+
+/* Mobile Optimization */
+@media (max-width: 480px) {
+    .proceed-btn {
+        width: 90%;
+        font-size: 16px;
+    }
+}
+
+/* Text Styles */
+.text1{
+    font-size:50px;
+    font-weight:bold;
+    line-height: 1.1;
+    background:blue;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    -webkit-text-stroke: 1px black;
+}
+
+.text2{
+    font-size:30px;
+    font-weight:bold;
+    line-height: 1.1;
+    background:blue;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    -webkit-text-stroke: 1px black;
+}
+
+.text3{
+    font-size:30px;
+    font-weight:bold;
+    line-height: 1.1;
+    background:black;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="text1">Division of Bohol Executive Conference</div>
+<br>
+    <div class="text2"><i>Theme: “A Piece of Heaven: A Journey of Leadership,</i></div>
+    <div class="text2"><i>Culture, and Connection”</i></div>
+<br>
+    <div class="text3">January 8, 2026</div>
+    <div class="text3">Loboc, Bohol</div>
+</div>
+
+<div class="button-wrapper">
+<center>
+<img src="arrowbelow.gif" width="100" height="100">
+</center>
+    <button class="proceed-btn" onclick="goNext()">Proceed</button>
+</div>
+
+<script>
+function goNext() {
+    window.location.href = "welcome.html";
+}
+</script>
+
+</body>
+</html>
