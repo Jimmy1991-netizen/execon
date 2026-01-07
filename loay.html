@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A One-Day Journey to Loboc</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: blue;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #fff;
+      border-bottom: 2px solid #ddd;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #333;
+    }
+
+    nav button.active {
+      border-bottom: 3px solid #ff6600;
+      color: #ff6600;
+      font-weight: bold;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      flex: 1;
+      display: none;
+      padding: 20px;
+    }
+
+    /* CENTER PRODUCTS */
+    .container.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* PRODUCT GRID */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 220px));
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .product {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 10px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product p {
+      font-size: 14px;
+      margin: 8px 0;
+    }
+
+    .product button {
+      background-color: #ff6600;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .product button:hover {
+      background-color: #e65c00;
+    }
+
+    /* SHARE POPUP */
+    .share-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      padding: 20px;
+      text-align: center;
+      z-index: 1000;
+      width: 300px;
+    }
+
+    .share-popup img {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 900;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>A One-Day Journey to Loboc</header>
+
+<nav>
+  <button class="tab active" data-tab="home"><h1>VIA LOAY</h1></button>
+</nav>
+
+<!-- HOME -->
+<section class="container active" id="home">
+  <div class="products">
+
+<p>Let's start your journey here.</p>
+
+    <div class="product">
+      <h3>Community Welcome Stops</h3>
+        <img src="image1.jpg">
+      <a href="central.html"><button>Proceed</button></a>
+    </div>
+
+    <div class="product">
+      <h3>Proceed to the Conference Venue</h3>
+        <img src="image2.jpg">
+      <a href="centralheritage.html"><button>Proceed</button></a>
+    </div>
+
+    <div class="product">
+      <h3>The Gathering</h3>
+        <img src="image3.jpg">
+      <a href="heritage.html"><button>Proceed</button></a>
+    </div>
+
+    <div class="product">
+      <h3>Floating Feast Experience</h3>
+        <img src="image1.jpg">
+      <a href="float.html"><button>Proceed</button></a>
+    </div>
+
+    <div class="product">
+      <h3>Afternoon Explorations</h3>
+        <img src="image2.jpg">
+      <a href="afternoon.html"><button>Proceed</button></a>
+    </div>
+
+    <div class="product">
+      <h3>Share Your Experience</h3>
+        <img src="image3.jpg">
+      <a href="share.html"><button>Proceed</button></a>
+    </div>
+
+    <div class="product">
+      <h3>Gratitude & Farewell</h3>
+        <img src="image1.jpg">
+      <a href="farewell.html"><button>Proceed</button></a>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- SHARE POPUP -->
+<div class="overlay" id="overlay" onclick="closeShare()"></div>
+
+<div class="share-popup" id="sharePopup">
+  <img id="shareImage">
+  <p id="shareLink"></p>
+  <button onclick="copyLink()">Copy Link</button>
+  <button onclick="closeShare()">Close</button>
+</div>
+
+<script>
+  const popup = document.getElementById('sharePopup');
+  const overlay = document.getElementById('overlay');
+  const shareImg = document.getElementById('shareImage');
+  const shareLink = document.getElementById('shareLink');
+
+  function shareProduct(img, link) {
+    shareImg.src = img;
+    shareLink.textContent = link;
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+  }
+
+  function closeShare() {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText(shareLink.textContent);
+    alert('Product link copied!');
+  }
+</script>
+
+</body>
+</html>
