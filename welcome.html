@@ -2,138 +2,155 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Background Video with Sound</title>
+<title>Video Background Division</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-    }
+  body {
+    background: #f0f0f0;
+    font-family: Arial, sans-serif;
+    padding: 40px;
+  }
 
-    html, body {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
+  .video-box {
+    position: relative;
+    width: 350px;
+    height: 650px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
 
-    /* Video background */
-    .video-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1;
-    }
+  .video-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-    .video-container video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
 
-    /* Overlay */
-    .overlay {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.35);
-    }
+  .overlay-text {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
 
-    h1 {
-        color: white;
-        font-size: clamp(28px, 6vw, 60px);
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-    }
+  .show-text {
+    opacity: 1;
+  }
 
-    button {
-        padding: 12px 25px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        background: #00c853;
-        color: white;
-        transition: opacity 0.5s ease;
-    }
-
-    button:hover {
-        background: #00a844;
-    }
-
-    button.hide {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    /* Bottom link */
-    .bottom-link {
-        position: fixed;
-        bottom: 15px;
-        width: 100%;
-        text-align: center;
-        z-index: 10;
-    }
-
-    .bottom-link a {
-        color: #ffffff;
-        font-size: 16px;
-        text-decoration: none;
-        padding: 8px 16px;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 20px;
-        transition: background 0.3s ease;
-    }
-
-    .bottom-link a:hover {
-        background: rgba(0, 0, 0, 0.75);
-    }
+  .audio-btn {
+    position: absolute;
+    top: 300px;
+    left: 120px;
+    padding: 12px 12px;
+    font-size: 14px;
+    /*background: rgba(0,0,0,0.6);*/
+	background:gray;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    pointer-events: auto;
+  }
 </style>
 </head>
 
 <body>
+<center>
+<div class="video-box">
+  <video id="bgVideo" autoplay muted loop>
+    <source src="execon.mp4" type="video/mp4">
+  </video>
 
-<div class="video-container">
-    <video id="bgVideo" autoplay muted loop playsinline>
-        <source src="execon.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div>
+  <div class="overlay">
 
-<div class="overlay">
-    <h1></h1>
-    <button id="soundBtn" onclick="enableSound()">Enable Sound</button>
-</div>
+    <div id="overlayText" class="overlay-text" style="font-size:20px;position:absolute;top:250px;left:20px;"">
+      <p><i>Welcome to Loboc...</i></p>
+    </div>
 
-<div class="bottom-link">
-    <a href="next.html">Click here to proceed</a>
+<br>
+    <div id="overlayText2" class="overlay-text" style="font-size:20px;position:absolute;top:250px;left:20px;">
+      <p><i>where leadership meets nature, culture, and community.</i></p> 
+    </div>
+<br>
+
+    <div id="overlayText3" class="overlay-text" style="font-size:20px;position:absolute;top:250px;left:20px;">
+      <p><i>Today, you are invited to a one-day journey through a piece of heaven.</i></p>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+  <button class="audio-btn" onclick="toggleAudio(this)">🔊 Sound</button>
 </div>
+</center>
 
 <script>
-    function enableSound() {
-        const video = document.getElementById("bgVideo");
-        const button = document.getElementById("soundBtn");
 
-        video.muted = false;
-        video.volume = 1.0;
-        video.play();
 
-        // Auto-hide button
-        button.classList.add("hide");
-    }
+  const video = document.getElementById("bgVideo");
+
+//text
+  const text = document.getElementById("overlayText");
+  setTimeout(() => {
+    text.classList.add("show-text");
+  }, 2000);
+
+  setTimeout(() => {
+    text.classList.remove("show-text");
+  }, 5000);
+
+//text2
+  const text2 = document.getElementById("overlayText2");
+  setTimeout(() => {
+    text2.classList.add("show-text");
+  }, 7000);
+
+  setTimeout(() => {
+    text2.classList.remove("show-text");
+  }, 10000);
+
+
+//text3
+  const text3 = document.getElementById("overlayText3");
+  setTimeout(() => {
+    text3.classList.add("show-text");
+  }, 13000);
+
+  setTimeout(() => {
+    text3.classList.remove("show-text");
+  }, 25000);
+
+
+
+
+  function toggleAudio(btn) {
+    video.muted = false;
+    btn.style.display = "none";
+  }
+
+  // 🔁 Redirect after 30 seconds
+  setTimeout(() => {
+    window.location.href = "icons.html";
+  }, 30000);
 </script>
 
 </body>
 </html>
-
-
-
