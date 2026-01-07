@@ -89,6 +89,13 @@
       <p><i>Today, you are invited to a one-day journey through a piece of heaven.</i></p>
     </div>
 
+<br>
+
+    <div id="overlayText4" class="overlay-text" style="font-size:20px;position:absolute;top:250px;left:20px;color:yellow;">
+      <h3><i>The Beginning of the Journey</i></h3>
+    </div>
+
+
 
 
   </div>
@@ -136,7 +143,18 @@
 
   setTimeout(() => {
     text3.classList.remove("show-text");
-  }, 25000);
+  }, 23000);
+
+//text4
+  const text4 = document.getElementById("overlayText4");
+  setTimeout(() => {
+    text4.classList.add("show-text");
+  }, 24000);
+
+  setTimeout(() => {
+    text3.classList.remove("show-text");
+  }, 28000);
+
 
 
 
@@ -154,8 +172,3 @@
 
 </body>
 </html>
-
-
-
-
-
