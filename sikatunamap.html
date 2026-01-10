@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Loboc, Bohol Route Map</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* Distance Info */
+.info-box {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: white;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+/* POPUP OVERLAY */
+.detail-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* POPUP CONTENT */
+.detail-popup .content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+}
+
+.detail-popup img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* VIEW DETAILS BUTTON */
+.popup-btn {
+    margin-top: 6px;
+    padding: 6px 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<div class="info-box" id="distanceInfo">
+    <b>Route Distances</b><br>Loading...
+</div>
+
+<!-- SIKATUNA POPUP -->
+<div class="detail-popup" id="sikatunaPopup">
+    <div class="content">
+        <span class="close-btn" onclick="closePopup('sikatunaPopup')">✖</span>
+        <h3>Sikatuna</h3>
+        <img src="sikatuna.jpg">
+        <p>Sikatuna serves as a point of entry going toward Loboc.</p>
+    </div>
+</div>
+
+<!-- TAMBIS ES POPUP -->
+<div class="detail-popup" id="tambisPopup">
+    <div class="content">
+        <span class="close-btn" onclick="closePopup('tambisPopup')">✖</span>
+        <h3>Tambis Elementary School</h3>
+        <img src="tambis.jpg">
+        <p>A public elementary school located in Barangay Tambis.</p>
+    </div>
+</div>
+
+<!-- HERITAGE POPUP -->
+<div class="detail-popup" id="heritagePopup">
+    <div class="content">
+        <span class="close-btn" onclick="closePopup('heritagePopup')">✖</span>
+        <h3>Loboc Heritage Building</h3>
+        <img src="heritage.jpg">
+        <p>A historic landmark that showcases Loboc’s culture and history.</p>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+<script>
+/* LOCATIONS */
+const locations = [
+    { name: "Sikatuna (Point of Entry)", coords: [9.688033,123.974161], popup: "sikatunaPopup" },
+    { name: "Tambis Elementary School", coords: [9.654947,124.004035], popup: "tambisPopup" },
+    { name: "Loboc Heritage Building", coords: [9.635211,124.029806], popup: "heritagePopup" }
+];
+
+/* MAP */
+const map = L.map('map').setView([9.69,124.07], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+/* MARKERS WITH VIEW DETAILS BUTTON */
+locations.forEach(loc => {
+    L.marker(loc.coords).addTo(map).bindPopup(`
+        <b>${loc.name}</b><br>
+        <button class="popup-btn" onclick="openPopup('${loc.popup}')">
+            View Details
+        </button>
+    `);
+});
+
+/* ROUTES */
+let distanceText = "";
+
+function addRoute(start, end, label, style) {
+    L.Routing.control({
+        waypoints: [L.latLng(start), L.latLng(end)],
+        addWaypoints: false,
+        draggableWaypoints: false,
+        show: false,
+        lineOptions: { styles: [style] },
+        createMarker: () => null
+    }).on('routesfound', e => {
+        const km = (e.routes[0].summary.totalDistance / 1000).toFixed(2);
+        distanceText += `${label}: <b>${km} km</b><br>`;
+        document.getElementById("distanceInfo").innerHTML =
+            "<b>Route Distances</b><br>" + distanceText;
+    }).addTo(map);
+}
+
+addRoute(locations[0].coords, locations[1].coords,
+    "Sikatuna → Tambis ES",
+    { color: 'blue', weight: 5 }
+);
+
+addRoute(locations[1].coords, locations[2].coords,
+    "Tambis ES → Loboc Heritage Building",
+    { color: 'green', weight: 5, dashArray: '6,6' }
+);
+
+/* POPUP FUNCTIONS */
+function openPopup(id) {
+    document.getElementById(id).style.display = "flex";
+}
+
+function closePopup(id) {
+    document.getElementById(id).style.display = "none";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Loboc, Bohol Route Map</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* Distance Info */
+.info-box {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: white;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+/* Detail Popups */
+.detail-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-popup .content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+}
+
+.detail-popup .content img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.detail-popup .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Popup Button */
+.popup-btn {
+    margin-top: 6px;
+    padding: 6px 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<div class="info-box" id="distanceInfo">
+    <b>Route Distances</b><br>Loading...
+</div>
+
+<!-- Detail Popups -->
+<div class="detail-popup" id="bilarPopup">
+    <div class="content">
+        <span class="close-btn" onclick="closePopup('bilarPopup')">✖</span>
+        <h3>Bilar</h3>
+        <img src="bilar.jpg" alt="Bilar">
+        <img src="bilar.jpg" alt="Bilar">
+        <p>Point of Entry of Bohol.</p>
+    </div>
+</div>
+
+<div class="detail-popup" id="quinoguitanPopup">
+    <div class="content">
+        <span class="close-btn" onclick="closePopup('quinoguitanPopup')">✖</span>
+        <h3>Quinoguitan Elementary School</h3>
+        <img src="quinoguitan.jpg" alt="Quinoguitan ES">
+        <p>Local elementary school in Quinoguitan.</p>
+    </div>
+</div>
+
+<div class="detail-popup" id="lobocNhsPopup">
+    <div class="content">
+        <span class="close-btn" onclick="closePopup('lobocNhsPopup')">✖</span>
+        <h3>Loboc National High School</h3>
+        <img src="lobocnhs.jpg" alt="Loboc NHS">
+        <p>Main high school in Loboc town.</p>
+    </div>
+</div>
+
+<div class="detail-popup" id="heritagePopup">
+    <div class="content">
+        <span class="close-btn" onclick="closePopup('heritagePopup')">✖</span>
+        <h3>Loboc Heritage Building</h3>
+        <img src="heritage.jpg" alt="Loboc Heritage Building">
+        <p>Historic building showcasing Loboc's culture.</p>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+<script>
+/* Coordinates */
+const locations = [
+    { name: "Bilar", coords: [9.702521, 124.102351], popupDiv: "bilarPopup" },
+    { name: "Quinoguitan Elementary School", coords: [9.668134, 124.049502], popupDiv: "quinoguitanPopup" },
+    { name: "Loboc National High School", coords: [9.666394, 124.050022], popupDiv: "lobocNhsPopup" },
+    { name: "Loboc Heritage Building", coords: [9.635211, 124.029806], popupDiv: "heritagePopup" }
+];
+
+/* Map */
+const map = L.map('map').setView([9.69, 124.07], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+/* Markers with View Detail button */
+locations.forEach(loc => {
+    let btn = loc.popupDiv ? `<button class="popup-btn" onclick="openPopup('${loc.popupDiv}')">View Details</button>` : '';
+    L.marker(loc.coords).addTo(map).bindPopup(`
+        <b>${loc.name}</b><br>
+        ${btn}
+    `);
+});
+
+/* ROUTES */
+let distanceText = "";
+
+function addRoute(start, end, label, style) {
+    L.Routing.control({
+        waypoints: [L.latLng(start), L.latLng(end)],
+        addWaypoints: false,
+        draggableWaypoints: false,
+        show: false,
+        lineOptions: { styles: [style] },
+        createMarker: () => null
+    }).on('routesfound', e => {
+        const km = (e.routes[0].summary.totalDistance / 1000).toFixed(2);
+        distanceText += `${label}: <b>${km} km</b><br>`;
+        document.getElementById("distanceInfo").innerHTML = "<b>Route Distances</b><br>" + distanceText;
+    }).addTo(map);
+}
+
+addRoute(locations[0].coords, locations[1].coords, "Bilar → Quinoguitan ES", {color:'blue', weight:5});
+addRoute(locations[1].coords, locations[2].coords, "Quinoguitan ES → Loboc NHS", {color:'green', weight:5, dashArray:'6,6'});
+addRoute(locations[2].coords, locations[3].coords, "Loboc NHS → Loboc Heritage", {color:'red', weight:5, dashArray:'8,4'});
+
+/* Functions for popup divs */
+function openPopup(id) {
+    document.getElementById(id).style.display = "flex";
+}
+
+function closePopup(id) {
+    document.getElementById(id).style.display = "none";
+}
+</script>
+
+</body>
+</html>
