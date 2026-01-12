@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A One-Day Journey to Loboc</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: green;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #fff;
+      border-bottom: 2px solid #ddd;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #333;
+    }
+
+    nav button.active {
+      border-bottom: 3px solid #ff6600;
+      color: #ff6600;
+      font-weight: bold;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      flex: 1;
+      display: none;
+      padding: 20px;
+    }
+
+    /* CENTER PRODUCTS */
+    .container.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* PRODUCT GRID */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 350px));
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .product {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 10px;
+	width:330px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product p {
+      font-size: 14px;
+      margin: 8px 0;
+    }
+
+    .product button {
+      background-color: green;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .product button:hover {
+      background-color: #e65c00;
+    }
+
+    /* SHARE POPUP */
+    .share-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      padding: 20px;
+      text-align: center;
+      z-index: 1000;
+      width: 300px;
+    }
+
+    .share-popup img {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 900;
+    }
+
+    .program {
+      background: cornsilk;
+      border-radius: 10px;
+      box-shadow: 0 2px 60px rgba(0,0,0,0.1);
+      padding: 10px;
+	width:320px;
+      text-align: center;
+      transition: 0.3s;
+border: 4px solid red; /* RED BORDER */
+animation: borderColorChange 9s infinite;
+    }
+@keyframes borderColorChange {
+        0%   { border-color: red; }
+        11%  { border-color: orange; }
+        22%  { border-color: yellow; }
+        33%  { border-color: yellowgreen; }
+        44%  { border-color: green; }
+        55%  { border-color: turquoise; } /* blue-green */
+        66%  { border-color: blue; }
+        77%  { border-color: violet; }
+        88%  { border-color: pink; }
+        100% { border-color: red; }
+    }
+
+/* 6. Rainbow Text */
+.text6{
+    font-size:25px;
+    font-weight:bold;
+	text-align:center;
+font-family:'Brush Script MT', cursive;
+    background:linear-gradient(90deg,green,blue,indigo);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+}
+
+
+
+
+  </style>
+</head>
+
+<body>
+
+<header>A One-Day Journey to Loboc</header>
+
+<nav>
+  <button class="tab active" data-tab="home"><h1>VIA BILAR</h1></button>
+</nav>
+
+<!-- HOME -->
+<section class="container active" id="home">
+  <div class="products">
+
+<!-- stops -->
+<header style="background:green;"></header>
+
+<nav>
+  <button class="tab active" data-tab="home"><h1>School Visit Stops 
+<br><span style="color:orange;font-size:20px;"><i>Touching Lives Along the Way<i></span></h1></button>
+</nav>
+
+
+
+<center>
+<p style="color:orange;font-size:25px;"><i><b>Welcome to Loboc National High School</b><i></p>
+</center>
+<p style="text-align:justify;text-indent:30px;justify;color:orange;font-size:20px;">Experience a journey where culture, innovation, and collaboration converge - where every learner has access, every talent is nurtured, and performing teachers and leaders inspire every step toward achievement.</p>
+
+    <div class="product">
+      <h3>Loboc National High School</h3>
+<p style="text-align:left;">Distance from Bilar: <b>10.12 km.</b></p>
+<p style="text-align:left;">Estimated travel time: <b>10 - 15 minutes</b></p>
+<p style="text-align:left;">Average Speed: <b>40 - 60 km/h</b></p>
+<p style="text-align:left;">Mode of Transportation: <b>Motorcycle / Car / PUV</b></p>
+        <img src="LNHS2.png">
+        <img src="lnhs3.jpg">
+
+<p style="text-align:left;">Name of School: <b>Loboc National High School</b></p>
+<p style="text-align:left;">Year Established: <b>1968</b></p>
+<p style="text-align:left;">Name of School Head: <b>MIA MARIE J. BILIRAN</b></p>
+<p style="text-align:left;">Contact Number: <b>09289611858</b></p>
+<p style="text-align:left;">Name of SPTA President: <b>HELEN C. AGUAVIVA</b></p>
+<p style="text-align:left;">Number of Teachers: <b>27</b></p>
+<p style="text-align:left;">Enrolment: <b>447</b></p>
+<b><p style="text-align:left;">Special Features: </p></b>
+<p style="text-align:left;text-indent:40px;">⭐ SPFL Offering- Korean Language</p>
+<p style="text-align:left;text-indent:40px;">⭐ Tourism Offering in SHS</p>
+<p style="text-align:left;text-indent:40px;">⭐ Culture-Based Education</p>
+<p style="text-align:left;text-indent:40px;">⭐ Best CI Program Implementer </p>
+<p style="text-align:left;text-indent:40px;">(Deped Region 7 Pasidungog 2025)</p>
+<p style="text-align:left;text-indent:40px;">⭐ 2nd Place Lesson Exemplar Making </p>
+<p style="text-align:left;text-indent:40px;">Integration Competition (Province of Bohol</p>
+<p style="text-align:left;text-indent:40px;">Kulturo 2025)</p>
+
+<p style="text-align:left;text-indent:40px;">⭐ Best Iplan in English 7 (Regiona VII </p>
+<p style="text-align:left;text-indent:40px;">Project Share Awarding 2025)</p>
+<p style="text-align:left;text-indent:40px;">⭐ Outstanding Award for Gulayan sa </p>
+<p style="text-align:left;text-indent:40px;">Paaralan (Loboc District Pasigarbo 2025)</p>
+
+<p style="text-align:left;text-indent:40px;">⭐ Champion UDO World - International </p>
+<p style="text-align:left;text-indent:40px;">Dance Competition (Zimplicity)</p>
+
+<p style="text-align:left;text-indent:40px;">⭐ 5 Awards for Division School Press </p>
+<p style="text-align:left;text-indent:40px;">Conference (DSPC) 2025</p>
+
+<p style="text-align:left;text-indent:40px;">⭐ 2 Best Performing Master Teachers</p>
+<p style="text-align:left;text-indent:40px;"> Award (Loboc District Pasigarbo 2025)</p>
+<p style="text-align:left;text-indent:40px;">⭐ 5 Best Performing Teachers Award </p>
+<p style="text-align:left;text-indent:40px;">(Loboc District Pasigarbo 2025)</p>
+<p style="text-align:left;text-indent:40px;">⭐ Best Performing Principal (Loboc </p>
+<p style="text-align:left;text-indent:40px;">District Pasigarbo 2025)</p>
+
+    </div>
+<br>
+
+
+    <div class="product" style="background:yellow;">
+      <h3 style="text-align:left;">Breakfast Information:</h3>
+<p style="text-align:justify;text-indent:30px;justify;"><i>🕡 Breakfast available at 7:00 AM.</i></p>
+    </div>
+<br>
+    <div class="product">
+      <h3>Via Bilar Map</h3>
+        <img src="mapicon.png">
+    </div>
+<br>
+<!-- heritage -->
+<header style="background:green;"></header>
+
+<nav>
+  <button class="tab active" data-tab="home"><h1>Proceed to Conference Venue 
+<br><span style="color:orange;font-size:20px;"><i>Toward Heritage and Purpose<i></span></h1></button>
+</nav>
+
+<br>
+    <div class="product" style="background:yellow;">
+<p style="text-align:justify;text-indent:30px;justify;"><i>🕗 8:10 AM – Off to Heritage Building</i></p>
+    </div>
+<br>
+
+    <div class="product">
+      <h3 style="text-align:left;">Direction:</h3>
+<p style="text-align:justify;text-indent:30px;justify;">•From Loboc NHS:➡ Turn right at Cebuana Pawnshop then Cross the Bailey Bridge, then turn left to reach the gate way to the Loboc Tourism Complex then proceed to the Loboc Heritage Building.</p>
+
+        <img src="bridge/cebleft.jpg">
+<p style="text-align:left;">Turn left to Cebuana Pawnshop</p>
+
+        <img src="bridge/baileyleft.jpg">
+<p style="text-align:left;">You will cross the Bailey Bridge</p>
+
+        <img src="bridge/closerbailey.jpg">
+<p style="text-align:left;">Turn left after Bailey Bridge</p>
+
+        <img src="bridge/gate.jpg">
+<p style="text-align:left;">You will reach at the gate way to the Loboc Tourism Complex.</p>
+
+        <img src="bridge/front.jpg">
+<p style="text-align:left;">Proceed to the Loboc Heritage Building.</p>
+
+    </div>
+
+<br>
+    <div class="product" style="background:cornsilk;">
+      <h3 style="text-align:left;">Arrival Instructions:</h3>
+<p style="text-align:justify;text-indent:30px;justify;"><i>ℹ️ Enter the Tourism Complex</i></p>
+<p style="text-align:justify;text-indent:30px;justify;"><i>ℹ️ Proceed to the <b>Second Floor</b> of the Heritage Building</i></p>
+    </div>
+
+<br>
+<center>
+<p style="color:orange;font-size:25px;"><i><b>Welcome to Loboc Heritage Building - The Conference Venue</b><i></p>
+</center>
+<p style="text-align:justify;text-indent:30px;justify;color:orange;font-size:20px;">“The journey converges at the heart of Loboc - where history and leadership meet.”</p>
+
+<br>
+
+
+    <div class="product">
+      <h3>Loboc Heritage Building</h3>
+<p style="text-align:left;">Distance from Loboc NHS: <b>7.14 km.</b></p>
+<p style="text-align:left;">Estimated travel time: <b>7 - 11 minutes</b></p>
+<p style="text-align:left;">Average Speed: <b>40 - 60 km/h</b></p>
+<p style="text-align:left;">Mode of Transportation: <b>Motorcycle / Car / PUV</b></p>
+        <img src="heritage.jpg">
+<p style="text-align:left;">Location: <b>Villaflor, Loboc, Bohol</b></p>
+
+    </div>
+
+<br>
+    <div class="product">
+      <h3>Conference Venue  Map</h3>
+        <img src="mapicon.png">
+    </div>
+
+<br>
+<!-- gathering -->
+<header style="background:green;"></header>
+
+<nav>
+  <button class="tab active" data-tab="home"><h1>Opening Program & Executive Conference 
+<br><span style="color:orange;font-size:20px;"><i>Where Ideas Flow<i></span></h1></button>
+</nav>
+<br>
+
+   <div class="program">
+    <div class="text6"><h1>The Program</h1></div>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i>🕗 8:10 – 8:30 AM</i></p>
+<p style="text-align:left;text-indent:20px;"><i><b>Meet-Up & Photo Moment</b></i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i>🕗 8:30 AM </i></p>
+<p style="text-align:left;text-indent:20px;"><i><b>Opening Program</b></i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Acknowledgment of Attendees</b></i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Special Recognition</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;"><i>🎉October–January Celebrators</i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;"><i>🎺Loboc Brass Band “Hay Que Celebrar”</i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Singing of Hymns</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;"><i>🎤 Selected Loboc District Teachers</i></p>
+<p style="text-align:left;text-indent:60px;font-size:12px;"><i>🎵 Lupang Hinirang</i></p>
+<p style="text-align:left;text-indent:60px;font-size:12px;"><i>🎵 Bagong Pilipinas</i></p>
+<p style="text-align:left;text-indent:60px;font-size:12px;"><i>🎵 Bohol Hymn</i></p>
+<p style="text-align:left;text-indent:60px;font-size:12px;"><i>🎵 Loboc Hymn</i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Invocatory Song</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;"><i>🎤 Selected Loboc District Teachers</i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Welcome Remarks</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;line-height:0.5px;"><i>👤 <b>Ma. Buenaventurada G. Socorin</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;line-height:0.5px"><i>Public Schools District Supervisor – Loboc</i></p>
+<h6></h6>
+<p style="text-align:left;text-indent:40px;font-size:12px;line-height:0.5px;"><i>👤 <b>Hon. Raymond G. Jala</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;line-height:0.5px"><i>Municipal Mayor, Loboc</i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Symbolic Gesture of Collaboration</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;line-height:0.5px;"><i>🤝 LGU and Deped</i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Audio-Visual Presentation</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;line-height:0.5px;"><i>🖥️ "Loboc: A Legacy of Culture, Learning, and”</i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;"><i>Resilience”</i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Cultural Presentation</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;line-height:0.5px;"><i>🎤 Loboc Children’s Choir</i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Message</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;line-height:2px;"><i>👤 <b>Fay C. Luarez EdD, PhD TM, CESO VI</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;line-height:2px"><i>Schools Division Superintendent</i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Meeting Proper</b></i></p>
+
+    </div>
+<br>
+<!-- floating -->
+<header style="background:green;"></header>
+
+<nav>
+  <button class="tab active" data-tab="home"><h1>Floating Feast Experience
+<br><span style="color:orange;font-size:20px;"><i>Lunch Fellowship<i></span></h1></button>
+</nav>
+
+<br>
+    <div class="product" style="background:yellow;">
+<p style="text-align:justify;text-indent:30px;justify;"><i>🕥 11:45 AM – 1:00 PM</i></p>
+    </div>
+
+<center>
+<p style="color:orange;font-size:25px;"><i><b>Welcome to Loboc Floating Restaurant</b><i>
+</center>
+
+<p style="text-align:justify;text-indent:30px;justify;color:orange;font-size:20px;">Enjoy a serene lunch aboard a floating restaurant while cruising the iconic Loboc River—where nature, culture, and cuisine meet.</p>
+
+
+    <div class="product">
+<center>
+      <h3 style="color:black;"><i>Loboc Floating Restaurant</i></h3>
+</center>
+        <img src="lunch/f2.jpg">
+    </div>
+
+<br>
+    <div class="product" style="background:lightgray;">
+<h2>🌊 Loboc River – Cultural Notes</h2>
+
+    <h3>Historical Significance</h3>
+    <p>The Loboc River has been a central part of the community since the Spanish colonial period.</p>
+    <p>Early settlers used the river for transportation, fishing, and trade, making it a lifeline for local livelihood.</p>
+
+    <h3>Tourism & Traditions</h3>
+    <p>The river is famous for its floating restaurants, where visitors can enjoy Filipino meals while cruising.</p>
+    <p>Traditional riverboat rides often include live folk music performances, showcasing Boholano culture.</p>
+    <p>Annual festivities and local rituals sometimes feature the river as a backdrop, highlighting its role in town celebrations.</p>
+
+    <h3>Natural & Spiritual Importance</h3>
+
+<p>The Loboc River is often associated with community gatherings and religious processions called "Sambat".</p>
+    <p>Locals view it as a symbol of life and continuity, linking past generations to the present.</p>
+    <p>Surrounding areas are rich in flora and fauna, blending natural beauty with cultural identity.</p>
+
+    <h3>Cultural Preservation</h3>
+    <p>Efforts have been made to preserve the river’s ecosystem and heritage, maintaining traditional practices alongside modern tourism.</p>
+    <p>The river and its surroundings reflect the blend of history, culture, and community life that defines Loboc.</p>
+    </div>
+
+<br>
+<!-- afternoon -->
+<header style="background:green;"></header>
+
+<nav>
+  <button class="tab active" data-tab="home"><h1>Afternoon Reset
+<br><span style="color:orange;font-size:20px;"><i>Surprise, Reflect, Connect<i></span></h1></button>
+</nav>
+<br>
+
+   <div class="program">
+    <div class="text6"><h1>Activities</h1></div>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i>🕐 1:00 PM – Start of Activities</i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Surprise… Surprise… Surprise</b></i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Resumption of Meeting</b></i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Ceremonial Commitment</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;"><i>🎵 Song:<b>“That’s All I Want From You”</b></i></p>
+<p style="text-align:left;text-indent:60px;font-size:12px;"><i>🎤 Selected Loboc District Teachers</i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;"><i>🤝 Commitment Sharing- 1 PSDS Representative</i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;"><i>per Congressional District</i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Giving of Certificates & Souvenirs</b></i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Words of Gratitude</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;line-height:0.5px;"><i>👤 <b>Estrellieta C. Dulalas</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;line-height:0.5px"><i>LCES Principal</i></p>
+<hr>
+<p style="text-align:left;text-indent:20px;"><i><b>❄️ Closing Prayer</b></i></p>
+<p style="text-align:left;text-indent:40px;font-size:12px;"><i>👤 Selected Deped Loboc District Personnel</i></p>
+<hr>
+<p style="text-align:center;text-indent:0px;font-size:12px;"><i>🎤 <b>Master of Ceremonies:</b></i></p>
+<p style="text-align:center;text-indent:0px;font-size:18px;color:red;"><i><b>GAY F. LERION</b></i></p>
+
+    </div>
+
+<br>
+<!-- farewell -->
+<header style="background:green;"></header>
+
+<nav>
+  <button class="tab active" data-tab="home"><h1>Gratitude & Farewell
+<br><span style="color:orange;font-size:20px;"><i>Until the Next Journey<i></span></h1></button>
+</nav>
+<br><br>
+
+
+<span style="color:green;font-size:25px;text-align:center;"><i><b>“Thank you for walking this journey with us.
+May Loboc remain a piece of heaven you carry into your leadership.”</b>
+<i></span>
+    <br>
+<br><br>
+    <div class="product" style="background:pink;">
+<h2>🧧 Extras:</h2>
+<hr>
+<header style="background:red;padding:1px;"><p>Group Photo Gallery</p></header>
+    <a href="https://drive.google.com/drive/folders/1_c3m0s9-55CEIaRvYJ008frTmZcbQBL8?usp=sharing"><h4>Click this link to upload and view photos.</h4></a>
+<hr>
+<header style="background:red;padding:1px;"><p>Share your Impression or Insights</p></header>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdb6OBADhZ9FxMOxvEHwbpZ0WHJOObLSBwXboQp0SvGAGGunQ/viewform?usp=publish-editor"><h4>Click this link to share.</h4></a>
+<hr>
+    </div>
+<br>
+    <div class="product">
+      <a href="icons.html"><button>Back to Home Page</button></a>
+    </div>
+
+
+
+
+
+  </div>
+</section>
+
+<!-- SHARE POPUP -->
+<div class="overlay" id="overlay" onclick="closeShare()"></div>
+
+<div class="share-popup" id="sharePopup">
+  <img id="shareImage">
+  <p id="shareLink"></p>
+  <button onclick="copyLink()">Copy Link</button>
+  <button onclick="closeShare()">Close</button>
+</div>
+
+<script>
+  const popup = document.getElementById('sharePopup');
+  const overlay = document.getElementById('overlay');
+  const shareImg = document.getElementById('shareImage');
+  const shareLink = document.getElementById('shareLink');
+
+  function shareProduct(img, link) {
+    shareImg.src = img;
+    shareLink.textContent = link;
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+  }
+
+  function closeShare() {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText(shareLink.textContent);
+    alert('Product link copied!');
+  }
+</script>
+
+</body>
+</html>
