@@ -77,9 +77,7 @@
       transition: 0.3s;
     }
 
-    .product:hover {
-      transform: translateY(-5px);
-    }
+
 
     .product img {
       width: 100%;
@@ -135,10 +133,48 @@
       background: rgba(0,0,0,0.5);
       z-index: 900;
     }
+
+/* Popup Overlay */
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup img {
+    max-width: 350px;
+    max-height: 650px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+}
+
+
+
   </style>
 </head>
 
 <body>
+
+<!-- Popup stops-->
+<div class="popup" id="popup">
+    <img src="bilar.gif" alt="Popup Image">
+</div>
+
+<!-- Popup stops-->
+<div class="popup" id="popup2">
+    <img src="sikatuna.gif" alt="Popup Image">
+</div>
+
+<!-- Popup stops-->
+<div class="popup" id="popup3">
+    <img src="loay.gif" alt="Popup Image">
+</div>
+
+<!-- Audio -->
+<audio id="music" src="loboc.m4a"></audio>
+
 
 <header>A One-Day Journey to Loboc</header>
 
@@ -153,23 +189,23 @@
     <div class="product" style="background:green;color:white;">
       <h3>Via Bilar</h3>
         <img src="image1.jpg">
-      <a href="bilar2.html"><button>Proceed</button></a>
+      <button onclick="showPopup()">Proceed</button>
     </div>
 
     <div class="product" style="background:red;color:white;">
       <h3>Via Sikatuna</h3>
         <img src="image2.jpg"> 
-      <a href="sikatuna2.html"><button>Proceed</button></a>
+      <button onclick="showPopup2()">Proceed</button>
     </div>
 
     <div class="product" style="background:blue;color:white;">
       <h3>Via Loay</h3>
         <img src="image3.jpg">
-      <a href="loay2.html"><button>Proceed</button></a>
+      <button onclick="showPopup3()">Proceed</button>
     </div>
 
     <div class="product"> 
-      <a href="https://jimmy1991-netizen.github.io/execon/"><button>Back to Welcome Page</button></a>
+      <a href="index.html"><button>Back to Welcome Page</button></a>
     </div>
 
   </div>
@@ -207,6 +243,69 @@
     navigator.clipboard.writeText(shareLink.textContent);
     alert('Product link copied!');
   }
+
+
+//pop up open via bilar 
+function showPopup() {
+    const popup = document.getElementById("popup");
+    const music = document.getElementById("music");
+
+    popup.style.display = "flex";
+    music.currentTime = 0;
+    music.play();
+
+    setTimeout(() => {
+        popup.style.display = "none";
+        music.pause();
+
+        // Redirect to next page
+        window.location.href = "iconsbilar.html";
+    }, 7000); // 10 seconds
+}
+//pop up close via bilar 
+
+//pop up open via sikatuna
+function showPopup2() {
+    const popup = document.getElementById("popup2");
+    const music = document.getElementById("music");
+
+    popup.style.display = "flex";
+    music.currentTime = 0;
+    music.play();
+
+    setTimeout(() => {
+        popup.style.display = "none";
+        music.pause();
+
+        // Redirect to next page
+        window.location.href = "viatambis.html";
+    }, 7000); // 10 seconds
+}
+//pop up close via sikatuna
+
+//pop up open via loay
+function showPopup3() {
+    const popup = document.getElementById("popup3");
+    const music = document.getElementById("music");
+
+    popup.style.display = "flex";
+    music.currentTime = 0;
+    music.play();
+
+    setTimeout(() => {
+        popup.style.display = "none";
+        music.pause();
+
+        // Redirect to next page
+        window.location.href = "viacentral.html";
+    }, 7000); // 10 seconds
+}
+//pop up close via loay
+
+
+
+
+
 </script>
 
 </body>
