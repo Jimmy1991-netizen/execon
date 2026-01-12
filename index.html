@@ -2,21 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Video Splash Screen</title>
+<title>Video Background Division</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        background: skyblue;
-        overflow: hidden;
-        font-family: Arial, sans-serif;
-        padding: 20px;
-    }
+  body {
+    background: #f0f0f0;
+    font-family: Arial, sans-serif;
+    padding: 0px;
+  }
 
-    .video-box {
+  .video-box {
         width: 350px;
         height: 650px;
         position: relative;
@@ -24,174 +20,156 @@
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.6);
         margin: 0 auto;
-    }
+  }
 
-    .video-box video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+  .video-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-    /*/ Overlay container */
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.35); /* dark overlay for readability */
-        display: flex;
-            /*justify-content: center;    */
-            /*align-items: center;    */
-            text-align: left;    
-        color: #fff;
-        z-index: 2;
-        padding: 20px;
-    }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
 
-    .overlay h1 {
-        font-size: 28px;
-        margin: 0;
-    }
+  }
 
-    .overlay p {
-        margin-top: 10px;
-        font-size: 16px;
-        opacity: 0.9;
-    }
+  .overlay-text {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
 
-   .loader-container {
-        width: 320px;
-        text-align: center;
-    }
+  .show-text {
+    opacity: 1;
+  }
 
-    .progress-text {
-        font-size: 18px;
-        margin-bottom: 12px;
-    }
-
-    .progress-bar {
-        width: 100%;
-        height: 18px;
-        background: #333;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    .progress-fill {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, #00ffcc, #00ccff);
-        border-radius: 10px;
-        transition: width 0.1s linear;
-    }
-
+  .audio-btn {
+    position: absolute;
+    top: 300px;
+    left: 90px;
+    padding: 10px;
+    font-size: 14px;
+    /*background: rgba(0,0,0,0.6);*/
+	background:lightgray;
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
+    pointer-events: auto;
+  }
 </style>
 </head>
 
 <body>
-
-<audio id="audio">
-    <source src="loboc.m4a" type="audio/mp4">
-    Your browser does not support the audio element.
-</audio>
-
-
-<div class="video-box">
-    <video autoplay muted loop playsinline>
-        <source src="execon1.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
 <center>
-    <!-- Overlay Text -->
-    <div class="overlay">
-        <div>
-            <h1 style="text-shadow:0 0 0px darkblue;font-size:40px;color:white;">EXECUTIVE CONFERENCE</h1>
-         <span><img src="bohol.png" width="50" height="50"></span>
-            <span style="position:absolute;top:130px;color:white;">SCHOOLS DIVISION OF BOHOL</span>
-            <span style="position:absolute;top:150px;left:100px;font-family:'Segoe Script', cursive;font-size:20px;color:white;">LOBOC District</span>
+<div class="video-box">
+  <video id="bgVideo" autoplay muted loop>
+    <source src="execon.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay">
+
+    <div id="overlayText" class="overlay-text" style="font-size:20px;position:absolute;top:250px;left:20px;"">
+      <p><i>Welcome to LOBOC...</i></p>
+    </div>
+
+<br>
+    <div id="overlayText2" class="overlay-text" style="font-size:20px;position:absolute;top:250px;left:20px;">
+      <p><i>where leadership meets nature, culture, and community.</i></p> 
+    </div>
 <br>
 
-         <span style="position:absolute;top:170px;left:-20px;"><img src="journey.png" width="400" height="300"></span>
-
-<h3 style="position:absolute;top:350px;left:90px;">January 15, 2026</h3>
-<h3 style="position:absolute;top:570px;left:90px;font-family:'Brush Script MT', cursive;">You are cordially invited</h3>
-        </div>
-
-<div class="loader-container" style="position:absolute;top:400px;left:10px;" >
-    <div class="progress-text" id="progressText">0%</div>
-    <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-<div style="position:absolute;top:80px;left:10px;"><center><button id="playBtn" style="border-radius:10px;background:lightgray;padding:10px;">▶ Play Audio</button></div>
+    <div id="overlayText3" class="overlay-text" style="font-size:20px;position:absolute;top:250px;left:20px;">
+      <p><i>Today, you are invited to a one-day journey through a piece of heaven.</i></p>
     </div>
+
+<br>
+
+    <div id="overlayText4" class="overlay-text" style="font-size:20px;position:absolute;top:250px;left:20px;color:yellow;">
+      <h3><i>The Beginning of the Journey</i></h3>
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+
+
+  <button class="audio-btn" onclick="toggleAudio(this)">🔊 Click to Play Music</button>
 </div>
-
-
-
-
-
-
-
-
-    </div>
 </center>
 
-</div>
-
 <script>
-    setTimeout(function () {
-        window.location.href = "welcome.html";
-    }, 35000); // 30 seconds
 
 
-const duration = 30000; // 15 seconds
-    const interval = 100;  // update every 100ms
-    const steps = duration / interval;
-    let progress = 0;
+  const video = document.getElementById("bgVideo");
 
-    const progressFill = document.getElementById("progressFill");
-    const progressText = document.getElementById("progressText");
+//text
+  const text = document.getElementById("overlayText");
+  setTimeout(() => {
+    text.classList.add("show-text");
+  }, 2000);
 
-    const timer = setInterval(() => {
-        progress++;
-        const percent = Math.min(Math.round((progress / steps) * 100), 100);
+  setTimeout(() => {
+    text.classList.remove("show-text");
+  }, 5000);
 
-        progressFill.style.width = percent + "%";
-        progressText.textContent = percent + "%";
+//text2
+  const text2 = document.getElementById("overlayText2");
+  setTimeout(() => {
+    text2.classList.add("show-text");
+  }, 7000);
 
-        if (percent >= 100) {
-            clearInterval(timer);
-            progressText.textContent = "Completed";
-        }
-    }, interval);
+  setTimeout(() => {
+    text2.classList.remove("show-text");
+  }, 13000);
 
 
-//audio open
+//text3
+  const text3 = document.getElementById("overlayText3");
+  setTimeout(() => {
+    text3.classList.add("show-text");
+  }, 16000);
 
-const playBtn = document.getElementById("playBtn");
-    const audio = document.getElementById("audio");
-    let stopTimer;
+  setTimeout(() => {
+    text3.classList.remove("show-text");
+  }, 26000);
 
-    playBtn.addEventListener("click", () => {
-        audio.currentTime = 0;
-        audio.play();
+//text4
+  const text4 = document.getElementById("overlayText4");
+  setTimeout(() => {
+    text4.classList.add("show-text");
+  }, 28000);
 
-        clearTimeout(stopTimer);
+  setTimeout(() => {
+    text3.classList.remove("show-text");
+  }, 32000);
 
-        // Stop audio after 30 seconds (30000 ms)
-        stopTimer = setTimeout(() => {
-            audio.pause();
-            audio.currentTime = 0;
-        }, 35000);
-    });
 
-//audio close
 
+
+
+  function toggleAudio(btn) {
+    video.muted = false;
+    btn.style.display = "none";
+  }
+
+  // 🔁 Redirect after 30 seconds
+  setTimeout(() => {
+    window.location.href = "cover.html";
+  }, 34000);
 </script>
 
 </body>
 </html>
-
-
-
-
